@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import './App.css';
-import Lolcryption from './Lolcryption';
+import { useState } from "react";
+import "./App.css";
+import Lolcryption from "./Lolcryption";
 
 function App() {
-  const [text, setText] = useState('');
-  const [output, setOutput] = useState('');
+  const [text, setText] = useState("");
+  const [output, setOutput] = useState("");
 
   const presets = [
-    'Hello, World!',
-    'The quick brown fox jumps over the lazy dog.',
+    "Hello, World!",
+    "The quick brown fox jumps over the lazy dog.",
   ];
 
   return (
@@ -31,9 +31,13 @@ function App() {
       <div className="blurb">
         <h2>Presets</h2>
         {presets.map((preset, i) => (
-          <button key={i} className="preset-button" onClick={() => setText(preset)}>
+          <button
+            key={i}
+            className="preset-button"
+            onClick={() => setText(preset)}
+          >
             {preset.slice(0, 20)}
-            {preset.length > 20 ? '...' : ''}
+            {preset.length > 20 ? "..." : ""}
           </button>
         ))}
         {output ? (
@@ -73,6 +77,17 @@ function App() {
           The algorithm takes the input string, scrambles the characters
           according to a sequence of integers, and returns the output string.
           For simplicity, 0 is considered part of the sequence.
+        </p>
+      </div>
+
+      <div className="blurb tertiary columns">
+        <p>
+          Made by <a href="https://1j.nz">Jason</a>.
+        </p>
+        <p>
+          github: <a href="https://github.com/jason-s13r/lolcryption-web">
+            jason-s13r/lolcryption-web
+          </a>
         </p>
       </div>
     </>
