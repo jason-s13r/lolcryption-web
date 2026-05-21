@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import TextCodec from './TextCodec';
+import Lolcryption from './Lolcryption';
 
 function App() {
   const [text, setText] = useState('');
@@ -22,7 +22,7 @@ function App() {
         onChange={(e) => setText(e.target.value)}
       ></textarea>
 
-      <TextCodec
+      <Lolcryption
         placeholder="Hello, World!"
         value={text}
         onChange={setOutput}
@@ -30,8 +30,8 @@ function App() {
 
       <div className="blurb">
         <h2>Presets</h2>
-        {presets.map((preset) => (
-          <button className="preset-button" onClick={() => setText(preset)}>
+        {presets.map((preset, i) => (
+          <button key={i} className="preset-button" onClick={() => setText(preset)}>
             {preset.slice(0, 20)}
             {preset.length > 20 ? '...' : ''}
           </button>

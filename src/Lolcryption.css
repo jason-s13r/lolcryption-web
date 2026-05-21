@@ -1,4 +1,4 @@
-.TextCodec {
+.Lolcryption {
   --light-color: #222;
   --light-bg: #f9f9f9;
   --light-border: #999;
@@ -23,7 +23,7 @@
   font-size: 1rem;
 }
 
-.TextCodec .output {
+.Lolcryption .output {
   grid-area: output;
   min-width: 30ch;
   min-height: 3rem;
@@ -36,16 +36,16 @@
   white-space: pre-wrap;
   font-family: monospace;
 }
-.TextCodec div.output p {
+.Lolcryption div.output p {
   margin: 0.25em;
   padding: 0;
   user-select: all;
 }
-.TextCodec div.output p.placeholder {
+.Lolcryption div.output p.placeholder {
   opacity: 0.5;
 }
 
-.TextCodec > div.toolbar {
+.Lolcryption > div.toolbar {
   border-bottom: solid 1px var(--border-color);
   grid-area: toolbar;
   color: inherit;
@@ -56,12 +56,12 @@
   gap: 1px;
 }
 
-.TextCodec label {
+.Lolcryption label {
   font-size: 0.75em;
   vertical-align: middle;
 }
 
-.TextCodec select {
+.Lolcryption select {
   border: none;
   color: inherit;
   background: transparent;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './TextCodec.css';
+import './Lolcryption.css';
 import { encodingAlgorithms } from './lib/encoders';
 
 export type TextCodecProps = {
@@ -11,7 +11,7 @@ export type TextCodecProps = {
   defaultEncode?: boolean,
 }
 
-export default function TextCodec({
+export default function Lolcryption({
   value,
   placeholder = '',
   onChange = (_: string) => void 0,
@@ -33,14 +33,14 @@ export default function TextCodec({
   useEffect(() => onChange(output), [output]);
 
   return (
-    <div className="TextCodec">
+    <div className="Lolcryption">
       <div className="toolbar">
         <select
           value={algorithm}
           onChange={(e) => setAlgorithm(e.target.value)}
         >
           {Object.values(encodingAlgorithms).map((algo) => (
-            <option selected={algorithm === algo.id} value={algo.id}>
+            <option key={algo.id} value={algo.id}>
               {algo.label}
             </option>
           ))}

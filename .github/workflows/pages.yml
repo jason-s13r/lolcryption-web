@@ -28,11 +28,11 @@ jobs:
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build parcel
-        run: npm run build
+        run: npm run build -- --dist-dir public --public-url "${{ steps.pages.outputs.base_url }}/" --detailed-report
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./public
   deploy:
     environment:
       name: github-pages
