@@ -2,6 +2,15 @@ import { useState, useEffect } from 'react';
 import './TextCodec.css';
 import { encodingAlgorithms } from './lib/encoders';
 
+export type TextCodecProps = {
+  value: string,
+  placeholder?: string
+  onChange?: (_: string) => void,
+  onAlgorithmChange?: (_: string) => void,
+  defaultAlgorithm?: string,
+  defaultEncode?: boolean,
+}
+
 export default function TextCodec({
   value,
   placeholder = '',
@@ -9,12 +18,12 @@ export default function TextCodec({
   onAlgorithmChange = (_: string) => void 0,
   defaultAlgorithm = 'lolcryption',
   defaultEncode = true,
-}) {
+}: TextCodecProps) {
   const [algorithm, setAlgorithm] = useState(defaultAlgorithm);
   const [encode, setEncode] = useState(defaultEncode);
   const [output, setOutput] = useState('');
 
-  const encodeText = (text) =>
+  const encodeText = (text: string) =>
     encode || encodingAlgorithms[algorithm].symmetric
       ? encodingAlgorithms[algorithm].encode(text)
       : encodingAlgorithms[algorithm].decode(text);

@@ -1,36 +1,36 @@
-export function theuconEncrypt(text) {
+export function theuconEncrypt(text: string) {
   return theuconScrambleArray(text.split(''), isPrime).join('');
 }
 
-export function theuconDecrypt(text) {
+export function theuconDecrypt(text: string) {
   return theuconUnscrambleArray(text.split(''), isPrime).join('');
 }
 
-export function theuconEncryptPreserveSpaces(text) {
+export function theuconEncryptPreserveSpaces(text: string) {
   return preserveSpaces(text, theuconScrambleArray, isPrime);
 }
 
-export function theuconDecryptPreserveSpaces(text) {
+export function theuconDecryptPreserveSpaces(text: string) {
   return preserveSpaces(text, theuconUnscrambleArray, isPrime);
 }
 
-export function fibonacciEncrypt(text) {
+export function fibonacciEncrypt(text: string) {
   return theuconScrambleArray(text.split(''), isFib).join('');
 }
 
-export function fibonacciDecrypt(text) {
+export function fibonacciDecrypt(text: string) {
   return theuconUnscrambleArray(text.split(''), isFib).join('');
 }
 
-export function fibonacciEncryptPreserveSpaces(text) {
+export function fibonacciEncryptPreserveSpaces(text: string) {
   return preserveSpaces(text, theuconScrambleArray, isFib);
 }
 
-export function fibonacciDecryptPreserveSpaces(text) {
+export function fibonacciDecryptPreserveSpaces(text: string) {
   return preserveSpaces(text, theuconUnscrambleArray, isFib);
 }
 
-function preserveSpaces(text, scrambler, isInSequence) {
+function preserveSpaces(text: string, scrambler: (_: string[], isInSequence: (n: number) => boolean) => string[], isInSequence: (n: number) => boolean) {
   const textArray = text.split('');
   const spaceless = text.replace(/[\s]/g, '');
   let spacelessArray = spaceless.split('');
@@ -57,14 +57,14 @@ function isPerfectSquare(n: number): boolean {
   return s * s === n;
 }
 
-function sequenceUntil(n: number, isInSequence): number[] {
+function sequenceUntil(n: number, isInSequence: (n: number) => boolean): number[] {
   return Array.from({ length: n - 1 }, (_, i) => i + 1).filter(isInSequence);
 }
 
-function theuconScrambleArray(remaining, isInSequence) {
-  let output = [];
+function theuconScrambleArray(remaining: string[], isInSequence: (n: number) => boolean) {
+  let output: string[] = [];
   while (remaining.length > 0) {
-    let primeIndexed = [];
+    let primeIndexed: string[] = [];
     remaining = remaining.filter((r, i) => {
       let accepted = i === 0 || isInSequence(i);
       if (accepted) {
@@ -77,8 +77,8 @@ function theuconScrambleArray(remaining, isInSequence) {
   return output;
 }
 
-function theuconUnscrambleArray(remaining, isInSequence) {
-  let output = [];
+function theuconUnscrambleArray(remaining: string[], isInSequence: (n: number) => boolean) {
+  let output: string[] = [];
   while (remaining.length) {
     const primes = [0, ...sequenceUntil(remaining.length, isInSequence)];
     const currentOutput: string[] = Array(remaining.length).fill('');
@@ -91,7 +91,7 @@ function theuconUnscrambleArray(remaining, isInSequence) {
     if (output.length === 0) {
       output = currentOutput;
     } else {
-      output = output.map((o) => (o === '' ? currentOutput.shift() : o));
+      output = output.map((o) => (o === '' ? (currentOutput.shift() ?? o) : o));
     }
   }
   return output;

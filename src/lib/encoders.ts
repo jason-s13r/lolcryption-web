@@ -16,54 +16,62 @@ import {
   rot13,
 } from './lolcryption';
 
-export const encodingAlgorithms = {
+type Encoder = {
+  id: string,
+  label: string,
+  encode: (text: string) => string,
+  decode: (text: string) => string,
+  symmetric?: boolean
+}
+
+export const encodingAlgorithms: Record<string, Encoder> = {
   lolcryption: {
     id: 'lolcryption',
     label: 'LOLcryption',
-    encode: (text) => enlolcrypt(text),
-    decode: (text) => delolcrypt(text),
+    encode: (text: string) => enlolcrypt(text),
+    decode: (text: string) => delolcrypt(text),
   },
   rot13: {
     id: 'rot13',
     label: 'ROT 13',
     symmetric: true,
-    encode: (text) => rot13(text),
-    decode: (text) => rot13(text),
+    encode: (text: string) => rot13(text),
+    decode: (text: string) => rot13(text),
   },
   keyboardShift: {
     id: 'keyboardShift',
     label: 'Keyboard Shift',
-    encode: (text) => encodeKeyboardShift(text),
-    decode: (text) => decodeKeyboardShift(text),
+    encode: (text: string) => encodeKeyboardShift(text),
+    decode: (text: string) => decodeKeyboardShift(text),
   },
   theucon: {
     id: 'theucon',
     label: 'Theucon Prime',
-    encode: (text) => theuconEncrypt(text),
-    decode: (text) => theuconDecrypt(text),
+    encode: (text: string) => theuconEncrypt(text),
+    decode: (text: string) => theuconDecrypt(text),
   },
   theuconPreserved: {
     id: 'theuconPreserved',
     label: 'Theucon Prime (preserve whitespace)',
-    encode: (text) => theuconEncryptPreserveSpaces(text),
-    decode: (text) => theuconDecryptPreserveSpaces(text),
+    encode: (text: string) => theuconEncryptPreserveSpaces(text),
+    decode: (text: string) => theuconDecryptPreserveSpaces(text),
   },
   theuconFibonacci: {
     id: 'theuconFibonacci',
     label: 'Theucon Fibonacci',
-    encode: (text) => fibonacciEncrypt(text),
-    decode: (text) => fibonacciDecrypt(text),
+    encode: (text: string) => fibonacciEncrypt(text),
+    decode: (text: string) => fibonacciDecrypt(text),
   },
   theuconFibonacciPreserved: {
     id: 'theuconFibonacciPreserved',
     label: 'Theucon Fibonacci (preserve whitespace)',
-    encode: (text) => fibonacciEncryptPreserveSpaces(text),
-    decode: (text) => fibonacciDecryptPreserveSpaces(text),
+    encode: (text: string) => fibonacciEncryptPreserveSpaces(text),
+    decode: (text: string) => fibonacciDecryptPreserveSpaces(text),
   },
   base64: {
     id: 'base64',
     label: 'Base64',
-    encode: (text) => btoa(text),
-    decode: (text) => aotb(text),
+    encode: (text: string) => btoa(text),
+    decode: (text: string) => atob(text),
   },
 };
