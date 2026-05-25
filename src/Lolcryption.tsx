@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
+import { encodingAlgorithms} from './lib/encoders';
 import './Lolcryption.css';
-import { encodingAlgorithms } from './lib/encoders';
 
 export type TextCodecProps = {
   value: string,
@@ -24,9 +24,15 @@ export default function Lolcryption({
   const [output, setOutput] = useState('');
 
   const encodeText = (text: string) =>
-    encode || encodingAlgorithms[algorithm].symmetric
+    {
+      try {
+        return encode || encodingAlgorithms[algorithm].symmetric
       ? encodingAlgorithms[algorithm].encode(text)
       : encodingAlgorithms[algorithm].decode(text);
+      } catch (e) {
+        return String(e);
+      }
+    };
 
   useEffect(() => setOutput(encodeText(value)), [value, algorithm, encode]);
   useEffect(() => onAlgorithmChange(algorithm), [algorithm]);
